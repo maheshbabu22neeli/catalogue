@@ -38,47 +38,21 @@ pipeline {
             APP_VERSION = packageVersion
         }
 
-        stage('Build') {
+        stage('Install Dependencies') {
             steps {
                 script {
                     sh """
-                        echo 'Building..... ${project} where version is ${APP_VERSION}'
-                        sleep 5
+                       npm install
                     """
                 }
             }
         }
-        stage('Test') {
+
+        stage('Docker Build') {
             steps {
                 script {
                     sh """
-                        echo 'Testing..... ${project}'
-                        echo "Hello ${params.PERSON}"
-                        echo "Biography: ${params.BIOGRAPHY}"
-                        echo "Toggle: ${params.TOGGLE}"
-                        echo "Choice: ${params.CHOICE}"
-                        echo "Password: ${params.PASSWORD}"
-                    """
-                }
-            }
-        }
-        stage('Deploy') {
-            /* input {
-                message "Confirm Deployment?"
-                ok "Yes, Deploy"
-                submitter "Mahesh,Gopi"
-                parameters {
-                    string(name: 'PERSON', defaultValue: 'Mr Jenkins', description: 'Who should I say hello to?')
-                }
-            } */
-            // If DEPLOY is false, this stage won't trigger
-            when {
-                 expression { params.DEPLOY == true }
-            }
-            steps {
-                script {
-                    sh """
-                        echo 'Deploying..... ${project}'
+                        docker build -t catalogue:${APP_VERSION} .
                     """
                 }
             }
