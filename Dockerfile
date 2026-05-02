@@ -1,14 +1,15 @@
-#FROM node:20.20.2-alpine3.23 AS builder  # this doen't have any vulnerables to test from pipeline
-# Hence, downgraded to lower version
-FROM node:20.1.0-alpine AS builder
+# this doesn't have any vulnerables to test from pipeline
+FROM node:20.20.2-alpine3.23 AS builder
+# Hence, downgraded to lower version to see the vulnerabilities in jenkins pipeline
+# FROM node:20.1.0-alpine AS builder
 WORKDIR /app
 COPY package.json .
 COPY *.js .
 RUN npm install
 
 
-#FROM node:20.20.2-alpine3.23
-FROM node:20.1.0-alpine
+FROM node:20.20.2-alpine3.23
+#FROM node:20.1.0-alpine
 WORKDIR /app
 EXPOSE 8080
 COPY --from=builder /app /app
