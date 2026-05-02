@@ -16,7 +16,6 @@
     "express-pino-logger": "^4.0.0",
     "pino-pretty": "^2.5.0",
     "@instana/collector": "^1.132.2",
-    // redis is old lirary and it has CVE's. To test this we are using GitHub Dependabot
     "redis": "^2.8.0"
   }
 }
