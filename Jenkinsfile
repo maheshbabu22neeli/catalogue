@@ -55,7 +55,7 @@ pipeline {
             }
         }
 
-        /* // by reaching this stage, we need to create a github token and add in Jenkins credentials
+        // by reaching this stage, we need to create a github token and add in Jenkins credentials
         stage('Dependabot Alerts Check') {
             steps {
                 withCredentials([string(credentialsId: 'github-token', variable: 'GITHUB_TOKEN')]) {
@@ -93,14 +93,14 @@ pipeline {
                                 def severity = alert.security_advisory?.severity?.toUpperCase() ?: 'UNKNOWN'
                                 def summary  = alert.security_advisory?.summary ?: 'No summary'
                                 def fixedIn  = alert.security_vulnerability?.first_patched_version?.identifier ?: 'No fix available'
-                                echo "  ❌ [${severity}] ${pkg} — ${summary} (Fixed in: ${fixedIn})"
+                                echo "❌ [${severity}] ${pkg} — ${summary} (Fixed in: ${fixedIn})"
                             }
                             error "Pipeline failed: ${alerts.size()} HIGH/CRITICAL Dependabot alert(s) detected."
                         }
                     }
                 }
             }
-        } */
+        }
 
 
         stage('Build Docker Image') {
