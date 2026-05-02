@@ -26,16 +26,20 @@ pipeline {
     } */
     stages {
         stage('Read Version') {
-            // Read the package.json file into a Groovy object
-            def packageJSON = readJSON file: 'package.json'
+            steps {
+                script {
+                    // Read the package.json file into a Groovy object
+                    def packageJSON = readJSON file: 'package.json'
 
-            // Access the version field
-            def packageVersion = packageJSON.version
+                    // Access the version field
+                    def packageVersion = packageJSON.version
 
-            echo "Current Version: ${packageVersion}"
+                    echo "Current Version: ${packageVersion}"
 
-            // Optionally, set it as a global environment variable
-            APP_VERSION = packageVersion
+                    // Optionally, set it as a global environment variable
+                    APP_VERSION = packageVersion
+                }
+            }
         }
 
         stage('Install Dependencies') {
