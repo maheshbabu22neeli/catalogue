@@ -6,7 +6,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "SteveW",
+  "author": "Mahesh Babu Neeli",
   "license": "Apache-2.0",
   "_comment" : "redis ^2.8.0 is old library and it has CVE's. To test this we are using GitHub Dependabot",
   "dependencies": {
