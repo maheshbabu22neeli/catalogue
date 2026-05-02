@@ -107,9 +107,7 @@ pipeline {
             steps {
                 withAWS(credentials: 'aws-creds', region: "${AWS_REGION}") {
                     sh """
-                        aws ecr get-login-password --region ${AWS_REGION} | docker login --username AWS --password-stdin ${AWS_ACCOUNT_ID}.dkr.ecr.${AWS_REGION}.amazonaws.com
                         docker build -t ${AWS_ACCOUNT_ID}.dkr.ecr.${AWS_REGION}.amazonaws.com/roboshop/catalogue:${APP_VERSION} .
-                        docker push 204427113986.dkr.ecr.${AWS_REGION}.amazonaws.com/roboshop/catalogue:${APP_VERSION}
                     """
                 }
             }
@@ -153,6 +151,17 @@ pipeline {
                     } else {
                         echo "✅ No HIGH or MEDIUM OS vulnerabilities found. Pipeline continues."
                     }
+                }
+            }
+        }
+
+        stage('Push Image tp ECR') {
+            steps {
+                withAWS(credentials: 'aws-creds', region: "${AWS_REGION}") {
+                    sh """
+                        aws ecr get-login-password --region ${AWS_REGION} | docker login --username AWS --password-stdin ${AWS_ACCOUNT_ID}.dkr.ecr.${AWS_REGION}.amazonaws.com
+                        docker push 204427113986.dkr.ecr.${AWS_REGION}.amazonaws.com/roboshop/catalogue:${APP_VERSION}
+                    """
                 }
             }
         }
