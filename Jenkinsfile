@@ -115,7 +115,7 @@ pipeline {
             }
         }
 
-        /* stage('Trivy OS Scan') {
+        stage('Trivy OS Scan') {
             steps {
                 script {
                     // Generate table report
@@ -155,7 +155,7 @@ pipeline {
                     }
                 }
             }
-        } */
+        }
 
     }
     post {
