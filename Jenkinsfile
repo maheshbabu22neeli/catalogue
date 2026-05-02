@@ -27,6 +27,7 @@ pipeline {
         password(name: 'PASSWORD', defaultValue: 'SECRET', description: 'Enter a password')
     } */
     stages {
+
         stage('Read Version') {
             steps {
                 script {
@@ -66,15 +67,6 @@ pipeline {
             }
         }
 
-        stage('Docker Build') {
-            steps {
-                script {
-                    sh """
-                        docker build -t catalogue:${APP_VERSION} .
-                    """
-                }
-            }
-        }
     }
     post {
         always {
