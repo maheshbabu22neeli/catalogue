@@ -1,5 +1,5 @@
 // this pipeline is containing all the configuration attribute to trigger the jenkins shared test library
-// Here we are not explicitly declaring the @Library because we enable to load the library by default
+// Here we are not  explicitly declaring the @Library because we enable to load the library by default
 
 def configMap = [
     project: "roboshop",
