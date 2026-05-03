@@ -1,5 +1,6 @@
 // this pipeline is containing all the configuration attribute to trigger the jenkins shared test library
-// Here we are not explicitly declaring the @Library because we enable to load the library by default
+// Here we are explicitly declaring the @Library because we didn't check(enable) to load the library by default
+@Library('jenkins-shared-library-test') _
 
 def configMap = [
     project: "roboshop",
@@ -13,7 +14,6 @@ if (env.BRANCH_NAME.equalsIgnoreCase('main')) {
 } else {
     // feature branch
     // here the method name is same as filename in jenkins-shared-library-test repo which is our library
-    // testPipeline(configMap);
-    // here the method name is same as filename in jenkins-shared-library repo which is our library
-    nodejsEKSPipeline(configMap);
+    testPipeline(configMap);
 }
+
