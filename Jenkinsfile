@@ -7,7 +7,7 @@ def configMap = [
 
 echo "Triggering the library pipeline"
 
-if (env.BRANCH_NAME.equalsIgnoreCase('main') {
+if (env.BRANCH_NAME.equalsIgnoreCase('main')) {
      // will see later
 } else {
     // feature branch
