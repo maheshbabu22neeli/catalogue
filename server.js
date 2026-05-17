@@ -6,7 +6,7 @@ instana({
         enabled: true
     }
 });
-
+// some change
 const { MongoClient, ObjectId } = require('mongodb');
 const bodyParser = require('body-parser');
 const express = require('express');
@@ -55,7 +55,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
 app.get('/health', (req, res) => {
-    var stat = {
+    const stat = {
         app: 'OK',
         mongo: mongoConnected
     };
@@ -181,3 +181,5 @@ const port = process.env.CATALOGUE_SERVER_PORT || '8080';
 app.listen(port, () => {
     logger.info('Started on port', port);
 });
+
+module.exports = app;
