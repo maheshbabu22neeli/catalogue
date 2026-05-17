@@ -1,7 +1,7 @@
 name: feature-branch-workflow
 
 # on: [push]
-on: workflow_dispatch
+on: push
 
 # It calls another workflow defined in the mneeli-actions/github-workflows repository using the `workflow_call` event.
 jobs:
