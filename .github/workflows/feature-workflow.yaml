@@ -1,0 +1,14 @@
+name: feature-branch-workflow
+
+# on: [push]
+on: workflow_dispatch
+
+# It calls another workflow defined in the mneeli-actions/github-workflows repository using the `workflow_call` event.
+jobs:
+  feature-branch-workflow:
+    # The workflow will only be triggered if the branch name does not start with 'feature'.
+    if: github.ref_name == 'feature*'
+    uses: mneeli-actions/github-workflows/.github/workflows/nodejs-feature-pipeline.yaml@main
+    with:
+      project: 'roboshop'
+      component: 'catalogue'
